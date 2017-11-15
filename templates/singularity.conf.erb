@@ -161,7 +161,7 @@ sessiondir max size = <%= scope['singularity::sessiondir_max_size'] %>
 # allowed to be used. This feature only applies when Singularity is running in
 # SUID mode and the user is non-root.
 #limit container owners = gmk, singularity, nobody
-<%- if scope['singularity::limit_container_owners'] -%>
+<%- if scope['singularity::limit_container_owners'] != 'undef' -%>
 limit container owners = <%= scope['singularity::limit_container_owners'].join(', ') %>
 <%- end -%>
 
@@ -174,7 +174,7 @@ limit container owners = <%= scope['singularity::limit_container_owners'].join('
 # feature only applies when Singularity is running in SUID mode and the user is
 # non-root.
 #limit container paths = /scratch, /tmp, /global
-<%- if scope['singularity::limit_container_paths'] -%>
+<%- if scope['singularity::limit_container_paths'] != 'undef' -%>
 limit container paths = <%= scope['singularity::limit_container_paths'].join(', ') %>
 <%- end -%>
 
@@ -194,7 +194,7 @@ allow container <%= type %> = <%= value %>
 # errors when accessed from container (typically bind mounts)
 #autofs bug path = /nfs
 #autofs bug path = /cifs-share
-<%- if scope['singularity::autofs_bug_paths'] -%>
+<%- if scope['singularity::autofs_bug_paths'] != 'undef' -%>
 <%- scope['singularity::autofs_bug_paths'].each do |autofs_bug_path| -%>
 autofs bug path = <%= autofs_bug_path %>
 <%- end -%>
