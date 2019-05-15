@@ -150,7 +150,7 @@ sessiondir max size = <%= scope['singularity::sessiondir_max_size'] %>
 # allowed to be used. This feature only applies when Singularity is running in
 # SUID mode and the user is non-root.
 #limit container owners = gmk, singularity, nobody
-<%- if scope['singularity::limit_container_owners'] -%>
+<%- if scope['singularity::limit_container_owners'] != 'undef' -%>
 limit container owners = <%= scope['singularity::limit_container_owners'].join(', ') %>
 <%- end -%>
 
@@ -161,7 +161,7 @@ limit container owners = <%= scope['singularity::limit_container_owners'].join('
 # allowed to be used. This feature only applies when Singularity is running in
 # SUID mode and the user is non-root.
 #limit container groups = group1, singularity, nobody
-<%- if scope['singularity::limit_container_groups'] -%>
+<%- if scope['singularity::limit_container_groups'] != 'undef' -%>
 limit container groups = <%= scope['singularity::limit_container_groups'].join(', ') %>
 <%- end -%>
 
@@ -173,7 +173,7 @@ limit container groups = <%= scope['singularity::limit_container_groups'].join('
 # feature only applies when Singularity is running in SUID mode and the user is
 # non-root.
 #limit container paths = /scratch, /tmp, /global
-<%- if scope['singularity::limit_container_paths'] -%>
+<%- if scope['singularity::limit_container_paths'] != 'undef' -%>
 limit container paths = <%= scope['singularity::limit_container_paths'].join(', ') %>
 <%- end -%>
 
@@ -191,7 +191,7 @@ allow container <%= type %> = <%= value %>
 # errors when accessed from container (typically bind mounts)
 #autofs bug path = /nfs
 #autofs bug path = /cifs-share
-<%- if scope['singularity::autofs_bug_paths'] -%>
+<%- if scope['singularity::autofs_bug_paths'] != 'undef' -%>
 <%- scope['singularity::autofs_bug_paths'].each do |autofs_bug_path| -%>
 autofs bug path = <%= autofs_bug_path %>
 <%- end -%>
@@ -224,7 +224,7 @@ memory fs type = <%= scope['singularity::memory_fs_type'] %>
 # DEFAULT: Undefined
 # Defines path from where CNI configuration files are stored
 #cni configuration path =
-<%- if scope['singularity::cni_configuration_path'] -%>
+<%- if scope['singularity::cni_configuration_path'] != 'undef' -%>
 cni configuration path = <%= scope['singularity::cni_configuration_path'] %>
 <%- end -%>
 
@@ -232,7 +232,7 @@ cni configuration path = <%= scope['singularity::cni_configuration_path'] %>
 # DEFAULT: Undefined
 # Defines path from where CNI executable plugins are stored
 #cni plugin path =
-<%- if scope['singularity::cni_plugin_path'] -%>
+<%- if scope['singularity::cni_plugin_path'] != 'undef' -%>
 cni plugin path = <%= scope['singularity::cni_plugin_path'] %>
 <%- end -%>
 
@@ -241,7 +241,7 @@ cni plugin path = <%= scope['singularity::cni_plugin_path'] %>
 # This allows the administrator to specify the location for mksquashfs if it is not
 # installed in a standard system location
 # mksquashfs path =
-<%- if scope['singularity::mksquashfs_path'] -%>
+<%- if scope['singularity::mksquashfs_path'] != 'undef' -%>
 mksquashfs path = <%= scope['singularity::mksquashfs_path'] %>
 <%- end -%>
 
